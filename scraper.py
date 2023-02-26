@@ -19,12 +19,13 @@ html = get_html(url)
 
 def parse_data_articles(html):
     soup = BeautifulSoup(html, "html.parser")
-    html = soup.select(".sc-fzoiQi, h2")
+    html = soup.find_all('div', class_='Wrapper-sc-11673k2-0 eHVkAX')
+
     matches = []
 
 
     for job in html: 
-        matches.append([job.text.strip()])
+        matches.append({'role': job.find('div', class_='sc-fzooss kBgtGS').text, 'company': job.find('div', class_='sc-fzoiQi kuzZTz').text, 'salary': job.find('dl', class_='sc-fzoJMP jpodhy').text})
 
     
 
